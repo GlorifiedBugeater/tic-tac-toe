@@ -4,7 +4,7 @@ function Gameboard(){
     this.board = [
         ["| |","| |","| |"],
         ["| |","| |","| |"],
-        ["| |","| |","| |"]
+        ["X","| |","| |"]
     ]
     this.showBoard = function(){
         console.log("this is the board right now")
@@ -44,13 +44,40 @@ function playerMove(){
     let playerChoice = prompt('write position: a1 a2 a3 b1 b2 b3 c1 c2 c3')
     
     while (true) {
-        for (let i = 0; i < newBoard.board.length; i++) {
-        for (let j = 0; j < newBoard.board[i].length; j++) {
-            if (playerChoice === newBoard.board[i][j]){
-                playerChoice = prompt("Position has aalready been used please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3")
-            }
-           }
-    
+        a = true
+        switch (true) {
+            case (playerChoice == "a1" && newBoard.board[0][0] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            case (playerChoice == "a2" && newBoard.board[0][1] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            case (playerChoice == "a3" && newBoard.board[0][2] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            case (playerChoice == "b1" && newBoard.board[1][0] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            case (playerChoice == "b2" && newBoard.board[1][1] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            case (playerChoice == "b3" && newBoard.board[1][2] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            case (playerChoice == "c1" && newBoard.board[2][0] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            case (playerChoice == "c2" && newBoard.board[2][1] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            case (playerChoice == "c3" && newBoard.board[2][2] !== "| |"):
+                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+                break
+            default:
+                a = false
+        }
+        if (a==false){
+            break
         }
     }
 
