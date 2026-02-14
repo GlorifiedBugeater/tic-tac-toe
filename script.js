@@ -31,6 +31,7 @@ newBoard = new Gameboard()
 player1.sayName()
 newBoard.showBoard()
 
+
 function playerMove(){
     switch (currentPlayer) {
         case 0:
@@ -40,7 +41,19 @@ function playerMove(){
         case 2:
             currentPlayer = 1   
     }
-    playerChoice = prompt('write position: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+    let playerChoice = prompt('write position: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+    
+    while (true) {
+        for (let i = 0; i < newBoard.board.length; i++) {
+        for (let j = 0; j < newBoard.board[i].length; j++) {
+            if (playerChoice === newBoard.board[i][j]){
+                playerChoice = prompt("Position has aalready been used please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3")
+            }
+           }
+    
+        }
+    }
+
     switch (true) {
         case (playerChoice == "a1" && currentPlayer == 1):
         newBoard.board[0][0] = player1.marker
