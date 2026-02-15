@@ -23,25 +23,22 @@ function Player (name,marker){
     };
 }
 
-player1 = new Player(prompt("declare player one, your marker is X"))
-player1.marker = "X"
-player2 = new Player(prompt("declare player two, your marker is O"))
-player2.marker = "O"
-newBoard = new Gameboard()
-player1.sayName()
-newBoard.showBoard()
+
 
 
 function playerMove(){
     switch (currentPlayer) {
         case 0:
             currentPlayer = 1;
+            break;
         case 1:
             currentPlayer = 2;
+            break;
         case 2:
-            currentPlayer = 1   
+            currentPlayer = 1
+            break;
     }
-    let playerChoice = prompt('write position: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+    let playerChoice = prompt("Player",currentPlayer,'write position: a1 a2 a3 b1 b2 b3 c1 c2 c3')
     
     while (true) {
         a = true
@@ -171,39 +168,59 @@ function winCondition (){
         case ((newBoard.board[0][0] === newBoard.board[0][1] && newBoard.board[0][0] === newBoard.board[0][2]) && 
         (newBoard.board[0][0] !== "| |" && newBoard.board[0][1] !== "| |" && newBoard.board[0][2] !== "| |")):
             checkWinner(0,0)
-            break
+            return false
         case ((newBoard.board[1][0] === newBoard.board[1][1] && newBoard.board[1][0] === newBoard.board[1][2]) && 
         (newBoard.board[1][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[1][2] !== "| |")):
             checkWinner(1,0)
-            break
+            return false
         case ((newBoard.board[2][0] === newBoard.board[2][1] && newBoard.board[2][0] === newBoard.board[2][2])&& 
         (newBoard.board[2][0] !== "| |" && newBoard.board[2][1] !== "| |" && newBoard.board[2][2] !== "| |")):
             checkWinner(2,0)
-            break
+            return false
         case ((newBoard.board[0][0] === newBoard.board[1][0] && newBoard.board[0][0] === newBoard.board[2][0])&& 
         (newBoard.board[0][0] !== "| |" && newBoard.board[1][0] !== "| |" && newBoard.board[2][0] !== "| |")):
             checkWinner(0,0)
-            break
+            return false
         case ((newBoard.board[0][1] === newBoard.board[1][1] && newBoard.board[0][1] === newBoard.board[2][1])&& 
         (newBoard.board[0][1] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[2][1] !== "| |")):
             checkWinner(0,1)
-            break
+            return false
         case ((newBoard.board[0][2] === newBoard.board[1][2] && newBoard.board[0][2] === newBoard.board[2][2])&& 
         (newBoard.board[0][2] !== "| |" && newBoard.board[1][2] !== "| |" && newBoard.board[2][2] !== "| |")):
             checkWinner(0,2)
-            break
+            return false
         case ((newBoard.board[0][0] === newBoard.board[1][1] && newBoard.board[0][0] === newBoard.board[2][2])&& 
         (newBoard.board[0][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[2][2] !== "| |")):
             checkWinner(0,0)
-            break
+            return false
         case ((newBoard.board[2][0] === newBoard.board[1][1] && newBoard.board[2][0] === newBoard.board[0][2])&& 
         (newBoard.board[2][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[0][2] !== "| |")):
             checkWinner(2,0)
-            break
+            return false
         default:
             console.log("No winner this round")
     }   
 }
 
+
+function game(){
+    player1 = new Player(prompt("declare player one, your marker is X"))
+    player1.marker = "X"
+    player2 = new Player(prompt("declare player two, your marker is O"))
+    player2.marker = "O"
+    newBoard = new Gameboard()
+    newBoard.showBoard()
+    let a = true
+    while(a == true) {
+        playerMove()
+        if (winCondition() == false) {
+            a = false
+        }
+
+    }
+}
+
 // playerMove()
-winCondition()
+// winCondition()
+
+game()
