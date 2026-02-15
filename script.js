@@ -4,7 +4,7 @@ function Gameboard(){
     this.board = [
         ["| |","| |","| |"],
         ["| |","| |","| |"],
-        ["X","| |","| |"]
+        ["| |","| |","| |"]
     ]
     this.showBoard = function(){
         console.log("this is the board right now")
@@ -23,10 +23,10 @@ function Player (name,marker){
     };
 }
 
-player1 = new Player(prompt("declare player one"))
-player1.marker = prompt(player1.name, "declare your marker")
-player2 = new Player(prompt("declare player two"))
-player2.marker = prompt(player1.name, "declare your marker")
+player1 = new Player(prompt("declare player one, your marker is X"))
+player1.marker = "X"
+player2 = new Player(prompt("declare player two, your marker is O"))
+player2.marker = "O"
 newBoard = new Gameboard()
 player1.sayName()
 newBoard.showBoard()
@@ -158,4 +158,52 @@ function playerMove(){
 
 }
 
-playerMove()
+function checkWinner (boardX,boardY){
+    if (newBoard.board[boardX][boardY] === "X") {
+        console.log(player1.name, "has won!")
+    } else {
+        console.log(player2.name, "has won!")
+    }
+}
+
+function winCondition (){
+    switch(true) {
+        case ((newBoard.board[0][0] === newBoard.board[0][1] && newBoard.board[0][0] === newBoard.board[0][2]) && 
+        (newBoard.board[0][0] !== "| |" && newBoard.board[0][1] !== "| |" && newBoard.board[0][2] !== "| |")):
+            checkWinner(0,0)
+            break
+        case ((newBoard.board[1][0] === newBoard.board[1][1] && newBoard.board[1][0] === newBoard.board[1][2]) && 
+        (newBoard.board[1][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[1][2] !== "| |")):
+            checkWinner(1,0)
+            break
+        case ((newBoard.board[2][0] === newBoard.board[2][1] && newBoard.board[2][0] === newBoard.board[2][2])&& 
+        (newBoard.board[2][0] !== "| |" && newBoard.board[2][1] !== "| |" && newBoard.board[2][2] !== "| |")):
+            checkWinner(2,0)
+            break
+        case ((newBoard.board[0][0] === newBoard.board[1][0] && newBoard.board[0][0] === newBoard.board[2][0])&& 
+        (newBoard.board[0][0] !== "| |" && newBoard.board[1][0] !== "| |" && newBoard.board[2][0] !== "| |")):
+            checkWinner(0,0)
+            break
+        case ((newBoard.board[0][1] === newBoard.board[1][1] && newBoard.board[0][1] === newBoard.board[2][1])&& 
+        (newBoard.board[0][1] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[2][1] !== "| |")):
+            checkWinner(0,1)
+            break
+        case ((newBoard.board[0][2] === newBoard.board[1][2] && newBoard.board[0][2] === newBoard.board[2][2])&& 
+        (newBoard.board[0][2] !== "| |" && newBoard.board[1][2] !== "| |" && newBoard.board[2][2] !== "| |")):
+            checkWinner(0,2)
+            break
+        case ((newBoard.board[0][0] === newBoard.board[1][1] && newBoard.board[0][0] === newBoard.board[2][2])&& 
+        (newBoard.board[0][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[2][2] !== "| |")):
+            checkWinner(0,0)
+            break
+        case ((newBoard.board[2][0] === newBoard.board[1][1] && newBoard.board[2][0] === newBoard.board[0][2])&& 
+        (newBoard.board[2][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[0][2] !== "| |")):
+            checkWinner(2,0)
+            break
+        default:
+            console.log("No winner this round")
+    }   
+}
+
+// playerMove()
+winCondition()
