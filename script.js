@@ -1,4 +1,5 @@
-currentPlayer = 0
+currentPlayer = 1
+gameActive = false
 
 function Gameboard(){
     this.board = [
@@ -6,221 +7,150 @@ function Gameboard(){
         ["| |","| |","| |"],
         ["| |","| |","| |"]
     ]
-    this.showBoard = function(){
-        console.log("this is the board right now")
-        console.log(this.board[0])
-        console.log(this.board[1])
-        console.log(this.board[2])
-    }
-   
 }
 
 function Player (name,marker){
     this.name = name
     this.marker = marker
-    this.sayName = function() {
-        console.log(this.name);
-    };
 }
 
-
-
-
-function playerMove(){
-    switch (currentPlayer) {
-        case 0:
-            currentPlayer = 1;
-            break;
-        case 1:
-            currentPlayer = 2;
-            break;
-        case 2:
-            currentPlayer = 1
-            break;
+function updateTurnDisplay(){
+    if(currentPlayer == 1){
+        document.getElementById("turnDisplay").textContent = player1.name + "'s Turn (X)"
+    } else {
+        document.getElementById("turnDisplay").textContent = player2.name + "'s Turn (O)"
     }
-    let playerChoice = prompt("Player",currentPlayer,'write position: a1 a2 a3 b1 b2 b3 c1 c2 c3')
+}
+
+function playerMove(position){
+
+    if(!gameActive) return
+
     
-    while (true) {
-        a = true
-        switch (true) {
-            case (playerChoice == "a1" && newBoard.board[0][0] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            case (playerChoice == "a2" && newBoard.board[0][1] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            case (playerChoice == "a3" && newBoard.board[0][2] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            case (playerChoice == "b1" && newBoard.board[1][0] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            case (playerChoice == "b2" && newBoard.board[1][1] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            case (playerChoice == "b3" && newBoard.board[1][2] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            case (playerChoice == "c1" && newBoard.board[2][0] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            case (playerChoice == "c2" && newBoard.board[2][1] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            case (playerChoice == "c3" && newBoard.board[2][2] !== "| |"):
-                playerChoice = prompt('This position has already been taken, please select again: a1 a2 a3 b1 b2 b3 c1 c2 c3')
-                break
-            default:
-                a = false
-        }
-        if (a==false){
-            break
-        }
+    let row, col
+
+    switch(position){
+        case "a1": row=0; col=0; break
+        case "a2": row=0; col=1; break
+        case "a3": row=0; col=2; break
+        case "b1": row=1; col=0; break
+        case "b2": row=1; col=1; break
+        case "b3": row=1; col=2; break
+        case "c1": row=2; col=0; break
+        case "c2": row=2; col=1; break
+        case "c3": row=2; col=2; break
     }
 
-    switch (true) {
-        case (playerChoice == "a1" && currentPlayer == 1):
-        newBoard.board[0][0] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "a1" && currentPlayer == 2):
-        newBoard.board[0][0] = player2.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "a2" && currentPlayer == 1):
-        newBoard.board[0][1] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "a2" && currentPlayer == 2):
-        newBoard.board[0][1] = player2.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "a3" && currentPlayer == 1):
-        newBoard.board[0][2] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "a3" && currentPlayer == 2):
-        newBoard.board[0][2] = player2.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "b1" && currentPlayer == 1):
-        newBoard.board[1][0] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "b1" && currentPlayer == 2):
-        newBoard.board[1][0] = player2.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "b2" && currentPlayer == 1):
-        newBoard.board[1][1] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "b2" && currentPlayer == 2):
-        newBoard.board[1][1] = player2.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "b3" && currentPlayer == 1):
-        newBoard.board[1][2] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "b3" && currentPlayer == 2):
-        newBoard.board[1][2] = player2.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "c1" && currentPlayer == 1):
-        newBoard.board[2][0] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "c1" && currentPlayer == 2):
-        newBoard.board[2][0] = player2.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "c2" && currentPlayer == 1):
-        newBoard.board[2][1] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "c2" && currentPlayer == 2):
-        newBoard.board[2][1] = player2.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "c3" && currentPlayer == 1):
-        newBoard.board[2][2] = player1.marker
-        newBoard.showBoard()
-        break
-        case (playerChoice == "c3" && currentPlayer == 2):
-        newBoard.board[2][2] = player2.marker
-        newBoard.showBoard()
-        break
+    if(newBoard.board[row][col] !== "| |"){
+        return
     }
 
+    if(currentPlayer == 1){
+        newBoard.board[row][col] = player1.marker
+    } else {
+        newBoard.board[row][col] = player2.marker
+    }
+
+    document.querySelector(`[data-pos='${position}']`).textContent =
+        newBoard.board[row][col]
+
+    if(winCondition() == false){
+        gameActive = false
+        return
+    }
+    if(currentPlayer == 1){
+        currentPlayer = 2
+    } else {
+        currentPlayer = 1
+}
+    checkTie()
+    updateTurnDisplay()
 }
 
 function checkWinner (boardX,boardY){
     if (newBoard.board[boardX][boardY] === "X") {
-        console.log(player1.name, "has won!")
+        document.getElementById("result").textContent =
+            player1.name + " has won!"
     } else {
-        console.log(player2.name, "has won!")
+        document.getElementById("result").textContent =
+            player2.name + " has won!"
+    }
+}
+
+function checkTie(){
+    let filled = 0
+    for(let i=0;i<3;i++){
+        for(let j=0;j<3;j++){
+            if(newBoard.board[i][j] !== "| |"){
+                filled++
+            }
+        }
+    }
+
+    if(filled == 9){
+        document.getElementById("result").textContent = "It's a tie!"
+        gameActive = false
     }
 }
 
 function winCondition (){
     switch(true) {
         case ((newBoard.board[0][0] === newBoard.board[0][1] && newBoard.board[0][0] === newBoard.board[0][2]) && 
-        (newBoard.board[0][0] !== "| |" && newBoard.board[0][1] !== "| |" && newBoard.board[0][2] !== "| |")):
-            checkWinner(0,0)
-            return false
+        (newBoard.board[0][0] !== "| |")):
+            checkWinner(0,0); return false
+
         case ((newBoard.board[1][0] === newBoard.board[1][1] && newBoard.board[1][0] === newBoard.board[1][2]) && 
-        (newBoard.board[1][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[1][2] !== "| |")):
-            checkWinner(1,0)
-            return false
+        (newBoard.board[1][0] !== "| |")):
+            checkWinner(1,0); return false
+
         case ((newBoard.board[2][0] === newBoard.board[2][1] && newBoard.board[2][0] === newBoard.board[2][2])&& 
-        (newBoard.board[2][0] !== "| |" && newBoard.board[2][1] !== "| |" && newBoard.board[2][2] !== "| |")):
-            checkWinner(2,0)
-            return false
+        (newBoard.board[2][0] !== "| |")):
+            checkWinner(2,0); return false
+
         case ((newBoard.board[0][0] === newBoard.board[1][0] && newBoard.board[0][0] === newBoard.board[2][0])&& 
-        (newBoard.board[0][0] !== "| |" && newBoard.board[1][0] !== "| |" && newBoard.board[2][0] !== "| |")):
-            checkWinner(0,0)
-            return false
+        (newBoard.board[0][0] !== "| |")):
+            checkWinner(0,0); return false
+
         case ((newBoard.board[0][1] === newBoard.board[1][1] && newBoard.board[0][1] === newBoard.board[2][1])&& 
-        (newBoard.board[0][1] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[2][1] !== "| |")):
-            checkWinner(0,1)
-            return false
+        (newBoard.board[0][1] !== "| |")):
+            checkWinner(0,1); return false
+
         case ((newBoard.board[0][2] === newBoard.board[1][2] && newBoard.board[0][2] === newBoard.board[2][2])&& 
-        (newBoard.board[0][2] !== "| |" && newBoard.board[1][2] !== "| |" && newBoard.board[2][2] !== "| |")):
-            checkWinner(0,2)
-            return false
+        (newBoard.board[0][2] !== "| |")):
+            checkWinner(0,2); return false
+
         case ((newBoard.board[0][0] === newBoard.board[1][1] && newBoard.board[0][0] === newBoard.board[2][2])&& 
-        (newBoard.board[0][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[2][2] !== "| |")):
-            checkWinner(0,0)
-            return false
+        (newBoard.board[0][0] !== "| |")):
+            checkWinner(0,0); return false
+
         case ((newBoard.board[2][0] === newBoard.board[1][1] && newBoard.board[2][0] === newBoard.board[0][2])&& 
-        (newBoard.board[2][0] !== "| |" && newBoard.board[1][1] !== "| |" && newBoard.board[0][2] !== "| |")):
-            checkWinner(2,0)
-            return false
-        default:
-            console.log("No winner this round")
+        (newBoard.board[2][0] !== "| |")):
+            checkWinner(2,0); return false
     }   
 }
 
-
 function game(){
-    player1 = new Player(prompt("declare player one, your marker is X"))
-    player1.marker = "X"
-    player2 = new Player(prompt("declare player two, your marker is O"))
-    player2.marker = "O"
+    player1 = new Player(
+        document.getElementById("player1Name").value || "Player 1",
+        "X"
+    )
+
+    player2 = new Player(
+        document.getElementById("player2Name").value || "Player 2",
+        "O"
+    )
+
     newBoard = new Gameboard()
-    newBoard.showBoard()
-    let a = true
-    while(a == true) {
-        playerMove()
-        if (winCondition() == false) {
-            a = false
-        }
+    currentPlayer = 1
+    gameActive = true
+    document.getElementById("result").textContent = ""
 
-    }
+    document.querySelectorAll(".cell").forEach(cell => {
+        cell.textContent = ""
+        cell.addEventListener("click", function(){
+            playerMove(this.dataset.pos)
+        })
+    })
+
+    updateTurnDisplay()
 }
-
-// playerMove()
-// winCondition()
-
-game()

@@ -2,12 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>Tiktaq'to</title>
 </head>
 <body>
-    
+
+    <h1>Tic Tac Toe</h1>
+
+    <div id="setup">
+        <input type="text" id="player1Name" placeholder="Player 1 Name">
+        <input type="text" id="player2Name" placeholder="Player 2 Name">
+        <button onclick="game()">Start Game</button>
+    </div>
+
+    <h2 id="turnDisplay"></h2>
+
+    <div id="board">
+        <div class="cell" data-pos="a1"></div>
+        <div class="cell" data-pos="a2"></div>
+        <div class="cell" data-pos="a3"></div>
+
+        <div class="cell" data-pos="b1"></div>
+        <div class="cell" data-pos="b2"></div>
+        <div class="cell" data-pos="b3"></div>
+
+        <div class="cell" data-pos="c1"></div>
+        <div class="cell" data-pos="c2"></div>
+        <div class="cell" data-pos="c3"></div>
+    </div>
+
+    <h2 id="result"></h2>
+    <button onclick="location.reload()">Restart</button>
+
+    <script src="script.js"></script>
 </body>
 </html>
